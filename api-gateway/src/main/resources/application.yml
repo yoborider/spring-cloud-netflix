@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: spring-api-gateway
+  cloud:
+    discovery:
+      enabled: true
+    gateway:
+      routes:
+        - id: route-stock-service
+          uri: lb://STOCK-SERVICE/
+          predicates:
+            - Path= /count/**
+
+server:
+  port: 8070
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+
+management:
+  endpoints:
+    actuator:
+      enabled: true
+      exposure:
+        include: '*'
+    web:
+      enabled: true
+      exposure:
+        include: '*'

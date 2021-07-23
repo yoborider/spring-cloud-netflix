@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: cardealership
+
+server:
+  port: 8090
+
+stock-service:
+  ribbon:
+    eureka:
+        enabled: true
+    # DeploymentContextBasedVipAddresses: stock-service
+    # listOfServers: localhost:8060,localhost:8061
+    ServerListRefreshInterval: 15000
+
+eureka:
+  client:
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
